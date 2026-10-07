@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Playwright Extent Report</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #697386;
+      --line: #dce2ea;
+      --passed: #168a53;
+      --failed: #c7352f;
+      --skipped: #8a6a00;
+      --timedOut: #aa4d00;
+      --interrupted: #6e57d4;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      background: #18213a;
+      color: #ffffff;
+      padding: 28px 32px;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      color: #c7d0e2;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      margin-bottom: 24px;
+    }
+
+    .metric, .test {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(23, 32, 51, 0.04);
+    }
+
+    .metric {
+      padding: 16px;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+
+    .tests {
+      display: grid;
+      gap: 12px;
+    }
+
+    .test {
+      overflow: hidden;
+    }
+
+    .test-header {
+      align-items: center;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 110px 1fr auto;
+      padding: 14px 16px;
+    }
+
+    .status {
+      border-radius: 999px;
+      color: #ffffff;
+      display: inline-flex;
+      font-size: 12px;
+      font-weight: 700;
+      justify-content: center;
+      padding: 5px 10px;
+      text-transform: uppercase;
+    }
+
+    .status-passed { background: var(--passed); }
+    .status-failed { background: var(--failed); }
+    .status-skipped { background: var(--skipped); }
+    .status-timedOut { background: var(--timedOut); }
+    .status-interrupted { background: var(--interrupted); }
+
+    .test-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .test-meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+      word-break: break-word;
+    }
+
+    details {
+      border-top: 1px solid var(--line);
+      padding: 0 16px 14px;
+    }
+
+    summary {
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      padding: 12px 0;
+    }
+
+    pre {
+      background: #101828;
+      border-radius: 6px;
+      color: #f3f6fb;
+      overflow: auto;
+      padding: 12px;
+      white-space: pre-wrap;
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    a {
+      color: #2453d4;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Playwright Extent Report</h1>
+    <p class="subtitle">Started 7/10/2026, 2:51:26 pm | Completed 7/10/2026, 2:52:03 pm</p>
+  </header>
+  <main>
+    <section class="summary" aria-label="Run summary">
+      <article class="metric">
+      <div class="metric-label">Total</div>
+      <div class="metric-value">11</div>
+    </article>
+      <article class="metric">
+      <div class="metric-label">Passed</div>
+      <div class="metric-value">11</div>
+    </article>
+      <article class="metric">
+      <div class="metric-label">Failed</div>
+      <div class="metric-value">0</div>
+    </article>
+      <article class="metric">
+      <div class="metric-label">Skipped</div>
+      <div class="metric-value">0</div>
+    </article>
+      <article class="metric">
+      <div class="metric-label">Timed Out</div>
+      <div class="metric-value">0</div>
+    </article>
+      <article class="metric">
+      <div class="metric-label">Pass Rate</div>
+      <div class="metric-value">100%</div>
+    </article>
+      <article class="metric">
+      <div class="metric-label">Duration</div>
+      <div class="metric-value">36.6s</div>
+    </article>
+      <article class="metric">
+      <div class="metric-label">Run Status</div>
+      <div class="metric-value">passed</div>
+    </article>
+    </section>
+    <section class="toolbar">
+      <input id="search" type="search" placeholder="Search tests, files, projects, or status" />
+    </section>
+    <section id="tests" class="tests">
+      <article class="test" data-search=" &gt; clientapp.spec.ts &gt; displays products and allows the user to sign out passed c:\playwright\tests\clientapp.spec.ts  c:\playwright\tests\clientapp.spec.ts:21:5">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; ClientApp.spec.ts &gt; displays products and allows the user to sign out</div>
+          <div class="test-meta"> | C:\PlayWright\tests\ClientApp.spec.ts:21:5 | Retry 0</div>
+        </div>
+        <div class="test-meta">2.4s</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/client/&quot;</li><li>Fill &quot;madhu@test.com&quot; locator(&#39;#userEmail&#39;)</li><li>Fill &quot;Madhu@123&quot; locator(&#39;#userPassword&#39;)</li><li>Click locator(&#39;#login&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body&#39;).first()</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body b&#39;).first()</li><li>Evaluate locator(&#39;.card-body b&#39;)</li><li>Click getByText(&#39;Sign Out&#39;, { exact: true })</li><li>Expect &quot;toContainText&quot; getByText(&#39;Logout Successfully&#39;)</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+<article class="test" data-search=" &gt; clientapp.spec.ts &gt; displays product details from the view button passed c:\playwright\tests\clientapp.spec.ts  c:\playwright\tests\clientapp.spec.ts:30:5">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; ClientApp.spec.ts &gt; displays product details from the view button</div>
+          <div class="test-meta"> | C:\PlayWright\tests\ClientApp.spec.ts:30:5 | Retry 0</div>
+        </div>
+        <div class="test-meta">2.1s</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/client/&quot;</li><li>Fill &quot;madhu@test.com&quot; locator(&#39;#userEmail&#39;)</li><li>Fill &quot;Madhu@123&quot; locator(&#39;#userPassword&#39;)</li><li>Click locator(&#39;#login&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body&#39;).first()</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; })</li><li>Click locator(&#39;.card-body&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; }).getByText(&#39;View&#39;)</li><li>Expect &quot;toHaveText&quot; locator(&#39;.rtl-text h2&#39;)</li><li>Expect &quot;toContainText&quot; locator(&#39;.rtl-text h3&#39;)</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;button&#39;, { name: /add to cart/i })</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;product details&#39; })</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;link&#39;, { name: &#39;Continue Shopping&#39; })</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; })</li><li>Expect &quot;toHaveCount&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.product-social a&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.fa-facebook&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.fa-google-plus&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.fa-twitter&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.fa-instagram&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.fa-rss&#39;)</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+<article class="test" data-search=" &gt; clientapp.spec.ts &gt; returns to products after continue shopping from details passed c:\playwright\tests\clientapp.spec.ts  c:\playwright\tests\clientapp.spec.ts:38:5">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; ClientApp.spec.ts &gt; returns to products after continue shopping from details</div>
+          <div class="test-meta"> | C:\PlayWright\tests\ClientApp.spec.ts:38:5 | Retry 0</div>
+        </div>
+        <div class="test-meta">3.1s</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/client/&quot;</li><li>Fill &quot;madhu@test.com&quot; locator(&#39;#userEmail&#39;)</li><li>Fill &quot;Madhu@123&quot; locator(&#39;#userPassword&#39;)</li><li>Click locator(&#39;#login&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body&#39;).first()</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; })</li><li>Click locator(&#39;.card-body&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; }).getByText(&#39;View&#39;)</li><li>Expect &quot;toHaveText&quot; locator(&#39;.rtl-text h2&#39;)</li><li>Expect &quot;toContainText&quot; locator(&#39;.rtl-text h3&#39;)</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;button&#39;, { name: /add to cart/i })</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;product details&#39; })</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;link&#39;, { name: &#39;Continue Shopping&#39; })</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; })</li><li>Expect &quot;toHaveCount&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.product-social a&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.fa-facebook&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.fa-google-plus&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.fa-twitter&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.fa-instagram&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.border-product&#39;).filter({ hasText: &#39;Share It&#39; }).locator(&#39;.fa-rss&#39;)</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;link&#39;, { name: &#39;Continue Shopping&#39; })</li><li>Click getByRole(&#39;link&#39;, { name: &#39;Continue Shopping&#39; })</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; })</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body b&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; })</li><li>Expect &quot;toHaveURL&quot;</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+<article class="test" data-search=" &gt; clientapp.spec.ts &gt; removes a product from the cart passed c:\playwright\tests\clientapp.spec.ts  c:\playwright\tests\clientapp.spec.ts:49:5">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; ClientApp.spec.ts &gt; removes a product from the cart</div>
+          <div class="test-meta"> | C:\PlayWright\tests\ClientApp.spec.ts:49:5 | Retry 0</div>
+        </div>
+        <div class="test-meta">3.7s</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/client/&quot;</li><li>Fill &quot;madhu@test.com&quot; locator(&#39;#userEmail&#39;)</li><li>Fill &quot;Madhu@123&quot; locator(&#39;#userPassword&#39;)</li><li>Click locator(&#39;#login&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body&#39;).first()</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; })</li><li>Click locator(&#39;.card-body&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; }).getByText(&#39;Add To Cart&#39;)</li><li>Click locator(&#39;[routerlink*=\&#39;cart\&#39;]&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;h3&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; })</li><li>Expect &quot;toBeVisible&quot; locator(&#39;h3&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; })</li><li>Click locator(&#39;button.btn-danger&#39;)</li><li>Expect &quot;toBeHidden&quot; locator(&#39;h3&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; })</li><li>Expect &quot;toBeVisible&quot; getByText(&#39;No Products in Your Cart !&#39;)</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+<article class="test" data-search=" &gt; clientapp.spec.ts &gt; completes an end-to-end purchase flow passed c:\playwright\tests\clientapp.spec.ts  c:\playwright\tests\clientapp.spec.ts:60:5">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; ClientApp.spec.ts &gt; completes an end-to-end purchase flow</div>
+          <div class="test-meta"> | C:\PlayWright\tests\ClientApp.spec.ts:60:5 | Retry 0</div>
+        </div>
+        <div class="test-meta">4.9s</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/client/&quot;</li><li>Fill &quot;madhu@test.com&quot; locator(&#39;#userEmail&#39;)</li><li>Fill &quot;Madhu@123&quot; locator(&#39;#userPassword&#39;)</li><li>Click locator(&#39;#login&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body&#39;).first()</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.card-body&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; })</li><li>Click locator(&#39;.card-body&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; }).getByText(&#39;Add To Cart&#39;)</li><li>Click locator(&#39;[routerlink*=\&#39;cart\&#39;]&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;h3&#39;).filter({ hasText: &#39;ADIDAS ORIGINAL&#39; })</li><li>Click getByText(&#39;Checkout&#39;, { exact: true })</li><li>Type &quot;Ind&quot; locator(&#39;[placeholder*=\&#39;Country\&#39;]&#39;)</li><li>Expect &quot;toBeVisible&quot; locator(&#39;.ta-results button&#39;).filter({ hasText: /^\s*India\s*$/ })</li><li>Click locator(&#39;.ta-results button&#39;).filter({ hasText: /^\s*India\s*$/ })</li><li>Expect &quot;toHaveText&quot; locator(&#39;.user__name [type=\&#39;text\&#39;]&#39;).first()</li><li>Click locator(&#39;.action__submit&#39;)</li><li>Expect &quot;toContainText&quot; locator(&#39;.hero-primary&#39;)</li><li>A valid order ID should be displayed</li><li>Click getByRole(&#39;button&#39;, { name: &#39;ORDERS&#39; })</li><li>Order 6ac60f272be7a4bc2b90ea2e should appear in the order history locator(&#39;tbody tr&#39;).filter({ hasText: &#39;6ac60f272be7a4bc2b90ea2e&#39; })</li><li>Click locator(&#39;tbody tr&#39;).filter({ hasText: &#39;6ac60f272be7a4bc2b90ea2e&#39; }).locator(&#39;button&#39;).first()</li><li>Expect &quot;toHaveText&quot; locator(&#39;.col-text&#39;)</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+<article class="test" data-search=" &gt; speciallocators.spec.ts &gt; special locators passed c:\playwright\tests\speciallocators.spec.ts  c:\playwright\tests\speciallocators.spec.ts:5:5">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; SpecialLocators.spec.ts &gt; Special locators</div>
+          <div class="test-meta"> | C:\PlayWright\tests\SpecialLocators.spec.ts:5:5 | Retry 0</div>
+        </div>
+        <div class="test-meta">1.1s</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/angularpractice/&quot;</li><li>Click getByLabel(&#39;Check me out if you Love IceCreams!&#39;)</li><li>Check getByLabel(&#39;Employed&#39;)</li><li>Select option getByLabel(&#39;Gender&#39;)</li><li>Fill &quot;test@123&quot; getByPlaceholder(&#39;Password&#39;)</li><li>Click getByRole(&#39;button&#39;, { name: &#39;Submit&#39; })</li><li>Expect &quot;toBeVisible&quot; getByText(&#39;Success! The Form has been submitted successfully!.&#39;)</li><li>Click getByRole(&#39;link&#39;, { name: &#39;Shop&#39; })</li><li>Click locator(&#39;app-card&#39;).filter({ hasText: &#39;Blackberry&#39; }).getByRole(&#39;button&#39;)</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+<article class="test" data-search=" &gt; speciallocators.spec.ts &gt; test level timeout passed c:\playwright\tests\speciallocators.spec.ts  c:\playwright\tests\speciallocators.spec.ts:15:5">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; SpecialLocators.spec.ts &gt; test level timeout</div>
+          <div class="test-meta"> | C:\PlayWright\tests\SpecialLocators.spec.ts:15:5 | Retry 0</div>
+        </div>
+        <div class="test-meta">996ms</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/angularpractice/&quot;</li><li>Click getByRole(&#39;button&#39;, { name: &#39;Submit&#39; })</li><li>Expect &quot;toBeVisible&quot; getByText(&#39;Success! The Form has been submitted successfully!.&#39;)</li><li>Click getByRole(&#39;link&#39;, { name: &#39;Shop&#39; })</li><li>Expect &quot;toHaveText&quot; locator(&#39;.my-4&#39;).first()</li><li>Click locator(&#39;app-card&#39;).filter({ hasText: &#39;Blackberry&#39; }).getByRole(&#39;button&#39;)</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+<article class="test" data-search=" &gt; uibasicstest.spec.ts &gt; practice login page &gt; validates login and displays products passed c:\playwright\tests\uibasicstest.spec.ts  c:\playwright\tests\uibasicstest.spec.ts:7:7">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; UiBasicstest.spec.ts &gt; Practice login page &gt; validates login and displays products</div>
+          <div class="test-meta"> | C:\PlayWright\tests\UiBasicstest.spec.ts:7:7 | Retry 0</div>
+        </div>
+        <div class="test-meta">7.6s</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Create context</li><li>Create page</li><li>Navigate to &quot;/loginpagePractise/&quot;</li><li>Fill &quot;madhu&quot; locator(&#39;#username&#39;)</li><li>Fill &quot;password123&quot; locator(&#39;[type=\&#39;password\&#39;]&#39;)</li><li>Click locator(&#39;#signInBtn&#39;)</li><li>Expect &quot;toContainText&quot; locator(&#39;[style*=\&#39;block\&#39;]&#39;)</li><li>Fill &quot;&quot; locator(&#39;#username&#39;)</li><li>Fill &quot;&quot; locator(&#39;[type=\&#39;password\&#39;]&#39;)</li><li>Fill &quot;rahulshettyacademy&quot; locator(&#39;#username&#39;)</li><li>Fill &quot;Learning@830$3mK2&quot; locator(&#39;[type=\&#39;password\&#39;]&#39;)</li><li>Click locator(&#39;#signInBtn&#39;)</li><li>Wait for selector locator(&#39;.card-body a&#39;).first()</li><li>Evaluate locator(&#39;.card-body a&#39;)</li><li>Close context</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+<article class="test" data-search=" &gt; uibasicstest.spec.ts &gt; page playwright test passed c:\playwright\tests\uibasicstest.spec.ts  c:\playwright\tests\uibasicstest.spec.ts:25:5">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; UiBasicstest.spec.ts &gt; page playwright test</div>
+          <div class="test-meta"> | C:\PlayWright\tests\UiBasicstest.spec.ts:25:5 | Retry 0</div>
+        </div>
+        <div class="test-meta">1.2s</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/&quot;</li><li>Expect &quot;toHaveTitle&quot;</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+<article class="test" data-search=" &gt; uibasicstest.spec.ts &gt; ui controls passed c:\playwright\tests\uibasicstest.spec.ts  c:\playwright\tests\uibasicstest.spec.ts:31:5">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; UiBasicstest.spec.ts &gt; UI controls</div>
+          <div class="test-meta"> | C:\PlayWright\tests\UiBasicstest.spec.ts:31:5 | Retry 0</div>
+        </div>
+        <div class="test-meta">4.1s</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/loginpagePractise/&quot;</li><li>Fill &quot;rahulshettyacademy&quot; locator(&#39;#username&#39;)</li><li>Fill &quot;Learning@830$3mK2&quot; locator(&#39;[type=\&#39;password\&#39;]&#39;)</li><li>Click locator(&#39;#signInBtn&#39;)</li><li>Select option locator(&#39;select.form-control&#39;)</li><li>Click locator(&#39;.radiotextsty&#39;).nth(1)</li><li>Expect &quot;toBeChecked&quot; locator(&#39;.radiotextsty&#39;).nth(1)</li><li>Click locator(&#39;#okayBtn&#39;)</li><li>Click locator(&#39;#terms&#39;)</li><li>Expect &quot;toBeChecked&quot; locator(&#39;#terms&#39;)</li><li>Uncheck locator(&#39;#terms&#39;)</li><li>Expect &quot;toBeFalsy&quot;</li><li>Expect &quot;toHaveAttribute&quot; locator(&#39;[href*=\&#39;documents-request\&#39;]&#39;)</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+<article class="test" data-search=" &gt; uibasicstest.spec.ts &gt; child window handled passed c:\playwright\tests\uibasicstest.spec.ts  c:\playwright\tests\uibasicstest.spec.ts:42:5">
+      <div class="test-header">
+        <span class="status status-passed">passed</span>
+        <div>
+          <div class="test-title"> &gt; UiBasicstest.spec.ts &gt; Child window handled</div>
+          <div class="test-meta"> | C:\PlayWright\tests\UiBasicstest.spec.ts:42:5 | Retry 0</div>
+        </div>
+        <div class="test-meta">4.1s</div>
+      </div>
+      <details>
+        <summary>Details</summary>
+        
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Create context</li><li>Create page</li><li>Navigate to &quot;/loginpagePractise/&quot;</li><li>Wait for event &quot;page&quot;</li><li>Click locator(&#39;[href*=\&#39;documents-request\&#39;]&#39;)</li><li>Fill &quot;rahulshettyacademy.com&quot; locator(&#39;#username&#39;)</li><li>Expect &quot;toHaveValue&quot; locator(&#39;#username&#39;)</li><li>Close context</li><li>After Hooks</li></ul>
+        
+      </details>
+    </article>
+    </section>
+  </main>
+  <script>
+    const search = document.getElementById('search');
+    const tests = Array.from(document.querySelectorAll('[data-search]'));
+
+    search.addEventListener('input', () => {
+      const value = search.value.toLowerCase();
+      for (const test of tests) {
+        test.style.display = test.dataset.search.includes(value) ? '' : 'none';
+      }
+    });
+  </script>
+</body>
+</html>
