@@ -14,7 +14,9 @@ export class ClientLoginPage {
   }
 
   async goto(): Promise<void> {
-    await this.page.goto('https://rahulshettyacademy.com/client/');
+    await this.page.goto('https://rahulshettyacademy.com/client/', {
+      waitUntil: 'domcontentloaded',
+    });
   }
 
   async login(email: string, password: string): Promise<void> {
