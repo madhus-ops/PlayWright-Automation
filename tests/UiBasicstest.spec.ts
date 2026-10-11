@@ -32,7 +32,6 @@ test('UI controls', async ({ page }) => {
   const loginPage = new PracticeLoginPage(page);
 
   await loginPage.goto();
-  await loginPage.login(practiceUser.username, practiceUser.password);
   await loginPage.selectConsultantRole();
   await loginPage.selectUserType(1);
   await loginPage.acceptAndClearTerms();

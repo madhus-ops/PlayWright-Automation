@@ -30,7 +30,9 @@ export class PracticeLoginPage {
   }
 
   async goto(): Promise<void> {
-    await this.page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+    await this.page.goto('https://rahulshettyacademy.com/loginpagePractise/', {
+      waitUntil: 'domcontentloaded',
+    });
   }
 
   async login(username: string, password: string): Promise<void> {
