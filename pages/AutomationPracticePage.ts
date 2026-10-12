@@ -6,6 +6,12 @@ const checkboxIds: Record<string, string> = {
   Option3: 'checkBoxOption3',
 };
 
+const radioButtonIndexes: Record<string, number> = {
+  Radio1: 0,
+  Radio2: 1,
+  Radio3: 2,
+};
+
 export type DialogDetails = {
   message: string;
   type: ReturnType<Dialog['type']>;
@@ -204,6 +210,32 @@ export class AutomationPracticePage {
 
   async expectDropdownLabel(label: string): Promise<void> {
     await expect(this.dropdown.locator('option:checked')).toHaveText(label);
+  }
+
+  getRadioButton(name: string): Locator {
+    const radioButtonIndex = radioButtonIndexes[name];
+    if (radioButtonIndex === undefined) {
+      throw new Error(`Unknown practice-page radio button: ${name}`);
+    }
+
+    return this.page
+      .getByRole('group', { name: 'Radio Button Example' })
+      .getByRole('radio')
+      .nth(radioButtonIndex);
+  }
+
+  async expectRadioButtonReady(name: string): Promise<void> {
+    const radioButton = this.getRadioButton(name);
+    await expect(radioButton).toBeVisible();
+    await expect(radioButton).toBeEnabled();
+  }
+
+  async selectRadioButton(name: string): Promise<void> {
+    await this.getRadioButton(name).check();
+  }
+
+  async expectRadioButtonState(name: string, checked: boolean): Promise<void> {
+    await expect(this.getRadioButton(name)).toBeChecked({ checked });
   }
 
   getCheckbox(label: string): Locator {
