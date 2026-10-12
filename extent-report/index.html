@@ -186,21 +186,21 @@
 <body>
   <header>
     <h1>Playwright Extent Report</h1>
-    <p class="subtitle">Started 12/10/2026, 3:42:24 pm | Completed 12/10/2026, 3:42:48 pm</p>
+    <p class="subtitle">Started 12/10/2026, 4:04:40 pm | Completed 12/10/2026, 4:04:55 pm</p>
   </header>
   <main>
     <section class="summary" aria-label="Run summary">
       <article class="metric">
       <div class="metric-label">Total</div>
-      <div class="metric-value">6</div>
+      <div class="metric-value">4</div>
     </article>
       <article class="metric">
       <div class="metric-label">Passed</div>
-      <div class="metric-value">6</div>
+      <div class="metric-value">3</div>
     </article>
       <article class="metric">
       <div class="metric-label">Failed</div>
-      <div class="metric-value">0</div>
+      <div class="metric-value">1</div>
     </article>
       <article class="metric">
       <div class="metric-label">Skipped</div>
@@ -212,114 +212,87 @@
     </article>
       <article class="metric">
       <div class="metric-label">Pass Rate</div>
-      <div class="metric-value">100%</div>
+      <div class="metric-value">75%</div>
     </article>
       <article class="metric">
       <div class="metric-label">Duration</div>
-      <div class="metric-value">24.8s</div>
+      <div class="metric-value">15.5s</div>
     </article>
       <article class="metric">
       <div class="metric-label">Run Status</div>
-      <div class="metric-value">passed</div>
+      <div class="metric-value">failed</div>
     </article>
     </section>
     <section class="toolbar">
       <input id="search" type="search" placeholder="Search tests, files, projects, or status" />
     </section>
     <section id="tests" class="tests">
-      <article class="test" data-search=" &gt; practice\radio-buttons.spec.ts &gt; automation practice radio buttons &gt; shows enabled radio buttons with none selected initially passed c:\playwright\tests\practice\radio-buttons.spec.ts  c:\playwright\tests\practice\radio-buttons.spec.ts:7:7">
+      <article class="test" data-search=" &gt; practice\new-window.spec.ts &gt; automation practice new window handling &gt; opens a new page when open window is clicked passed c:\playwright\tests\practice\new-window.spec.ts  c:\playwright\tests\practice\new-window.spec.ts:7:7">
       <div class="test-header">
         <span class="status status-passed">passed</span>
         <div>
-          <div class="test-title"> &gt; practice\radio-buttons.spec.ts &gt; Automation Practice radio buttons &gt; shows enabled radio buttons with none selected initially</div>
-          <div class="test-meta"> | C:\PlayWright\tests\practice\radio-buttons.spec.ts:7:7 | Retry 0</div>
+          <div class="test-title"> &gt; practice\new-window.spec.ts &gt; Automation Practice new window handling &gt; opens a new page when Open Window is clicked</div>
+          <div class="test-meta"> | C:\PlayWright\tests\practice\new-window.spec.ts:7:7 | Retry 0</div>
         </div>
-        <div class="test-meta">3.3s</div>
+        <div class="test-meta">3.7s</div>
       </div>
       <details>
         <summary>Details</summary>
         
-        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/AutomationPractice/&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>Expect &quot;toBeEnabled&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeEnabled&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeEnabled&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>After Hooks</li></ul>
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/AutomationPractice/&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Wait for event &quot;page&quot;</li><li>Click getByRole(&#39;button&#39;, { name: &#39;Open Window&#39;, exact: true })</li><li>Expect &quot;not toBe&quot;</li><li>Expect &quot;toHaveLength&quot;</li><li>Expect &quot;not toBe&quot;</li><li>After Hooks</li></ul>
         
       </details>
     </article>
-<article class="test" data-search=" &gt; practice\radio-buttons.spec.ts &gt; automation practice radio buttons &gt; selects radio1 passed c:\playwright\tests\practice\radio-buttons.spec.ts  c:\playwright\tests\practice\radio-buttons.spec.ts:20:7">
+<article class="test" data-search=" &gt; practice\new-window.spec.ts &gt; automation practice new window handling &gt; reports the new window destination and any loading error failed c:\playwright\tests\practice\new-window.spec.ts  c:\playwright\tests\practice\new-window.spec.ts:20:7">
       <div class="test-header">
-        <span class="status status-passed">passed</span>
+        <span class="status status-failed">failed</span>
         <div>
-          <div class="test-title"> &gt; practice\radio-buttons.spec.ts &gt; Automation Practice radio buttons &gt; selects Radio1</div>
-          <div class="test-meta"> | C:\PlayWright\tests\practice\radio-buttons.spec.ts:20:7 | Retry 0</div>
+          <div class="test-title"> &gt; practice\new-window.spec.ts &gt; Automation Practice new window handling &gt; reports the new window destination and any loading error</div>
+          <div class="test-meta"> | C:\PlayWright\tests\practice\new-window.spec.ts:20:7 | Retry 0</div>
         </div>
         <div class="test-meta">3.8s</div>
       </div>
       <details>
         <summary>Details</summary>
-        
-        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/AutomationPractice/&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Check getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>After Hooks</li></ul>
-        
+        <pre>Error: The destination is unavailable at https://www.qaclickacademy.com/; page title: qaclickacademy.com | 526: Invalid SSL certificate; observed error: Cloudflare Error 526 (Invalid SSL certificate)
+
+[2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+Expected: [32mfalse[39m
+Received: [31mtrue[39m</pre>
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/AutomationPractice/&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Wait for event &quot;page&quot;</li><li>Click getByRole(&#39;button&#39;, { name: &#39;Open Window&#39;, exact: true })</li><li>Wait for load state &quot;load&quot;</li><li>Wait for load state &quot;domcontentloaded&quot;</li><li>Expect &quot;toMatch&quot;</li><li>Expect &quot;not toBe&quot;</li><li>The destination is unavailable at https://www.qaclickacademy.com/; page title: qaclickacademy.com | 526: Invalid SSL certificate; observed error: Cloudflare Error 526 (Invalid SSL certificate)</li><li>After Hooks</li><li>Worker Cleanup</li></ul>
+        <h3>Attachments</h3><ul><li><a href="../test-results/practice-new-window-Automa-c1038-ation-and-any-loading-error/test-failed-2.png">screenshot (image/png)</a></li><li><a href="../test-results/practice-new-window-Automa-c1038-ation-and-any-loading-error/test-failed-1.png">screenshot (image/png)</a></li><li><a href="../test-results/practice-new-window-Automa-c1038-ation-and-any-loading-error/error-context.md">error-context (text/markdown)</a></li><li><a href="../test-results/practice-new-window-Automa-c1038-ation-and-any-loading-error/trace.zip">trace (application/zip)</a></li></ul>
       </details>
     </article>
-<article class="test" data-search=" &gt; practice\radio-buttons.spec.ts &gt; automation practice radio buttons &gt; selects radio2 and deselects the other radio buttons passed c:\playwright\tests\practice\radio-buttons.spec.ts  c:\playwright\tests\practice\radio-buttons.spec.ts:31:7">
+<article class="test" data-search=" &gt; practice\new-window.spec.ts &gt; automation practice new window handling &gt; keeps the original practice page open passed c:\playwright\tests\practice\new-window.spec.ts  c:\playwright\tests\practice\new-window.spec.ts:50:7">
       <div class="test-header">
         <span class="status status-passed">passed</span>
         <div>
-          <div class="test-title"> &gt; practice\radio-buttons.spec.ts &gt; Automation Practice radio buttons &gt; selects Radio2 and deselects the other radio buttons</div>
-          <div class="test-meta"> | C:\PlayWright\tests\practice\radio-buttons.spec.ts:31:7 | Retry 0</div>
+          <div class="test-title"> &gt; practice\new-window.spec.ts &gt; Automation Practice new window handling &gt; keeps the original practice page open</div>
+          <div class="test-meta"> | C:\PlayWright\tests\practice\new-window.spec.ts:50:7 | Retry 0</div>
         </div>
-        <div class="test-meta">3.9s</div>
+        <div class="test-meta">2.8s</div>
       </div>
       <details>
         <summary>Details</summary>
         
-        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/AutomationPractice/&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Check getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>After Hooks</li></ul>
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/AutomationPractice/&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Wait for event &quot;page&quot;</li><li>Click getByRole(&#39;button&#39;, { name: &#39;Open Window&#39;, exact: true })</li><li>Expect &quot;not toBe&quot;</li><li>Expect &quot;toBe&quot;</li><li>Expect &quot;toHaveURL&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;button&#39;, { name: &#39;Mouse Hover&#39;, exact: true })</li><li>After Hooks</li></ul>
         
       </details>
     </article>
-<article class="test" data-search=" &gt; practice\radio-buttons.spec.ts &gt; automation practice radio buttons &gt; selects radio3 and deselects the other radio buttons passed c:\playwright\tests\practice\radio-buttons.spec.ts  c:\playwright\tests\practice\radio-buttons.spec.ts:42:7">
+<article class="test" data-search=" &gt; practice\new-window.spec.ts &gt; automation practice new window handling &gt; can close the new page while keeping the original usable passed c:\playwright\tests\practice\new-window.spec.ts  c:\playwright\tests\practice\new-window.spec.ts:61:7">
       <div class="test-header">
         <span class="status status-passed">passed</span>
         <div>
-          <div class="test-title"> &gt; practice\radio-buttons.spec.ts &gt; Automation Practice radio buttons &gt; selects Radio3 and deselects the other radio buttons</div>
-          <div class="test-meta"> | C:\PlayWright\tests\practice\radio-buttons.spec.ts:42:7 | Retry 0</div>
+          <div class="test-title"> &gt; practice\new-window.spec.ts &gt; Automation Practice new window handling &gt; can close the new page while keeping the original usable</div>
+          <div class="test-meta"> | C:\PlayWright\tests\practice\new-window.spec.ts:61:7 | Retry 0</div>
         </div>
-        <div class="test-meta">4.4s</div>
+        <div class="test-meta">3.1s</div>
       </div>
       <details>
         <summary>Details</summary>
         
-        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/AutomationPractice/&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Check getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>After Hooks</li></ul>
-        
-      </details>
-    </article>
-<article class="test" data-search=" &gt; practice\radio-buttons.spec.ts &gt; automation practice radio buttons &gt; keeps only the most recently selected radio button checked passed c:\playwright\tests\practice\radio-buttons.spec.ts  c:\playwright\tests\practice\radio-buttons.spec.ts:53:7">
-      <div class="test-header">
-        <span class="status status-passed">passed</span>
-        <div>
-          <div class="test-title"> &gt; practice\radio-buttons.spec.ts &gt; Automation Practice radio buttons &gt; keeps only the most recently selected radio button checked</div>
-          <div class="test-meta"> | C:\PlayWright\tests\practice\radio-buttons.spec.ts:53:7 | Retry 0</div>
-        </div>
-        <div class="test-meta">4.3s</div>
-      </div>
-      <details>
-        <summary>Details</summary>
-        
-        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/AutomationPractice/&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Check getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Check getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Check getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>After Hooks</li></ul>
-        
-      </details>
-    </article>
-<article class="test" data-search=" &gt; practice\radio-buttons.spec.ts &gt; automation practice radio buttons &gt; allows the selected radio button to be changed repeatedly passed c:\playwright\tests\practice\radio-buttons.spec.ts  c:\playwright\tests\practice\radio-buttons.spec.ts:70:7">
-      <div class="test-header">
-        <span class="status status-passed">passed</span>
-        <div>
-          <div class="test-title"> &gt; practice\radio-buttons.spec.ts &gt; Automation Practice radio buttons &gt; allows the selected radio button to be changed repeatedly</div>
-          <div class="test-meta"> | C:\PlayWright\tests\practice\radio-buttons.spec.ts:70:7 | Retry 0</div>
-        </div>
-        <div class="test-meta">4.1s</div>
-      </div>
-      <details>
-        <summary>Details</summary>
-        
-        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/AutomationPractice/&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Check getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Check getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>Check getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).first()</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(1)</li><li>Expect &quot;toBeChecked&quot; getByRole(&#39;group&#39;, { name: &#39;Radio Button Example&#39; }).getByRole(&#39;radio&#39;).nth(2)</li><li>After Hooks</li></ul>
+        <h3>Steps</h3><ul><li>Before Hooks</li><li>Navigate to &quot;/AutomationPractice/&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Wait for event &quot;page&quot;</li><li>Click getByRole(&#39;button&#39;, { name: &#39;Open Window&#39;, exact: true })</li><li>Close page</li><li>Expect &quot;toBe&quot;</li><li>Expect &quot;toBe&quot;</li><li>Expect &quot;toHaveURL&quot;</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;heading&#39;, { name: &#39;Practice Page&#39; })</li><li>Expect &quot;toBeVisible&quot; getByRole(&#39;button&#39;, { name: &#39;Mouse Hover&#39;, exact: true })</li><li>After Hooks</li></ul>
         
       </details>
     </article>

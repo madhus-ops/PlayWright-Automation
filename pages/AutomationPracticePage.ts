@@ -25,6 +25,7 @@ export class AutomationPracticePage {
   private readonly mouseHoverButton: Locator;
   private readonly topLink: Locator;
   private readonly reloadLink: Locator;
+  private readonly openWindowButton: Locator;
   private readonly practicePageHeading: Locator;
   private readonly subscriberHeading: Locator;
   private readonly suggestionInput: Locator;
@@ -40,6 +41,7 @@ export class AutomationPracticePage {
     this.mouseHoverButton = page.getByRole('button', { name: 'Mouse Hover', exact: true });
     this.topLink = page.getByRole('link', { name: 'Top', exact: true });
     this.reloadLink = page.getByRole('link', { name: 'Reload', exact: true });
+    this.openWindowButton = page.getByRole('button', { name: 'Open Window', exact: true });
     this.practicePageHeading = page.getByRole('heading', { name: 'Practice Page' });
     this.subscriberHeading = page
       .frameLocator('#courses-iframe')
@@ -116,6 +118,15 @@ export class AutomationPracticePage {
     await expect(this.page).toHaveURL(/\/AutomationPractice\/?$/);
     await expect(this.practicePageHeading).toBeVisible();
     await expect(this.mouseHoverButton).toBeVisible();
+  }
+
+  async openNewWindow(): Promise<Page> {
+    const [newPage] = await Promise.all([
+      this.page.context().waitForEvent('page'),
+      this.openWindowButton.click(),
+    ]);
+
+    return newPage;
   }
 
   async expectSubscriberHeadingVisible(): Promise<void> {
