@@ -6,6 +6,12 @@ const checkboxIds: Record<string, string> = {
   Option3: 'checkBoxOption3',
 };
 
+const radioButtonIndexes: Record<string, number> = {
+  Radio1: 0,
+  Radio2: 1,
+  Radio3: 2,
+};
+
 export type DialogDetails = {
   message: string;
   type: ReturnType<Dialog['type']>;
@@ -19,6 +25,7 @@ export class AutomationPracticePage {
   private readonly mouseHoverButton: Locator;
   private readonly topLink: Locator;
   private readonly reloadLink: Locator;
+  private readonly openWindowButton: Locator;
   private readonly practicePageHeading: Locator;
   private readonly subscriberHeading: Locator;
   private readonly suggestionInput: Locator;
@@ -34,6 +41,7 @@ export class AutomationPracticePage {
     this.mouseHoverButton = page.getByRole('button', { name: 'Mouse Hover', exact: true });
     this.topLink = page.getByRole('link', { name: 'Top', exact: true });
     this.reloadLink = page.getByRole('link', { name: 'Reload', exact: true });
+    this.openWindowButton = page.getByRole('button', { name: 'Open Window', exact: true });
     this.practicePageHeading = page.getByRole('heading', { name: 'Practice Page' });
     this.subscriberHeading = page
       .frameLocator('#courses-iframe')
@@ -110,6 +118,15 @@ export class AutomationPracticePage {
     await expect(this.page).toHaveURL(/\/AutomationPractice\/?$/);
     await expect(this.practicePageHeading).toBeVisible();
     await expect(this.mouseHoverButton).toBeVisible();
+  }
+
+  async openNewWindow(): Promise<Page> {
+    const [newPage] = await Promise.all([
+      this.page.context().waitForEvent('page'),
+      this.openWindowButton.click(),
+    ]);
+
+    return newPage;
   }
 
   async expectSubscriberHeadingVisible(): Promise<void> {
@@ -204,6 +221,32 @@ export class AutomationPracticePage {
 
   async expectDropdownLabel(label: string): Promise<void> {
     await expect(this.dropdown.locator('option:checked')).toHaveText(label);
+  }
+
+  getRadioButton(name: string): Locator {
+    const radioButtonIndex = radioButtonIndexes[name];
+    if (radioButtonIndex === undefined) {
+      throw new Error(`Unknown practice-page radio button: ${name}`);
+    }
+
+    return this.page
+      .getByRole('group', { name: 'Radio Button Example' })
+      .getByRole('radio')
+      .nth(radioButtonIndex);
+  }
+
+  async expectRadioButtonReady(name: string): Promise<void> {
+    const radioButton = this.getRadioButton(name);
+    await expect(radioButton).toBeVisible();
+    await expect(radioButton).toBeEnabled();
+  }
+
+  async selectRadioButton(name: string): Promise<void> {
+    await this.getRadioButton(name).check();
+  }
+
+  async expectRadioButtonState(name: string, checked: boolean): Promise<void> {
+    await expect(this.getRadioButton(name)).toBeChecked({ checked });
   }
 
   getCheckbox(label: string): Locator {
