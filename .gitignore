@@ -6,3 +6,12 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Generated Extent reports
+/extent-report/
+
+# Local VS Code settings
+/.vscode/
+
+# macOS system files
+.DS_Store
